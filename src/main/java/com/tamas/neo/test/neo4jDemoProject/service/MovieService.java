@@ -35,6 +35,12 @@ public class MovieService {
     }
 
     @Transactional(readOnly = true)
+    public Collection<Movie> findByTitleLikeSwagger(String title) {
+        Collection<Movie> result = movieRepository.findByTitleLikeSwagger(title);
+        return result;
+    }
+
+    @Transactional(readOnly = true)
     public Collection<Movie> findByTitleLike(String title) {
         Collection<Movie> result = movieRepository.findByTitleLike(title);
         return result;

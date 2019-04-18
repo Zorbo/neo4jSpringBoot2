@@ -16,6 +16,9 @@ public interface MovieRepository extends Neo4jRepository<Movie, Long> {
 
     Optional<Movie> findById(Long id);
 
+    @Query("MATCH (m:Movie) WHERE m.title CONTAINS {title} RETURN m")
+    Collection<Movie> findByTitleLikeSwagger(@Param("title") String title);
+
     Collection<Movie> findByTitleLike(@Param("title") String title);
 
     @Query("MATCH (m:Movie)<-[r:ACTED_IN]-(a:Person) RETURN m,r,a LIMIT {limit}")

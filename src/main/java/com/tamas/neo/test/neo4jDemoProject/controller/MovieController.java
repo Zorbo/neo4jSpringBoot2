@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.Map;
 
-@CrossOrigin()
 @RestController
 @RequestMapping("/")
 public class MovieController {
@@ -21,9 +20,14 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movie/id")
-    public Movie findById(Long id) {
+    @GetMapping("/movieid")
+    public Movie findById(@RequestParam Long id) {
         return movieService.findById(id).orElse(null);
+    }
+
+    @GetMapping("/moviesswagger")
+    public Collection<Movie> findByTitleLikeSwagger(@RequestParam String title) {
+        return movieService.findByTitleLikeSwagger(title);
     }
 
     @GetMapping("/movie")
